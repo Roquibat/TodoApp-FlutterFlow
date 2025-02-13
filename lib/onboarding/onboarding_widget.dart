@@ -347,7 +347,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               fontFamily: 'Inter',
                               fontSize: 20.0,
                               letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                         keyboardType: TextInputType.name,
                         cursorColor: FlutterFlowTheme.of(context).primaryText,
