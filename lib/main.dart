@@ -43,6 +43,11 @@ class _MyAppState extends State<MyApp> {
     return matchList.uri.toString();
   }
 
+  List<String> getRouteStack() =>
+      _router.routerDelegate.currentConfiguration.matches
+          .map((e) => getRoute(e))
+          .toList();
+
   late Stream<BaseAuthUser> userStream;
 
   final authUserSub = authenticatedUserStream.listen((_) {});
@@ -78,6 +83,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'ToDo',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -107,7 +113,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'Tasks';
+  String _currentPageName = 'logout';
   late Widget? _currentPage;
 
   @override
@@ -122,6 +128,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'Tasks': TasksWidget(),
       'Completed': CompletedWidget(),
+      'logout': LogoutWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -154,6 +161,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 30.0,
             ),
             label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.logout,
+              size: 24.0,
+            ),
+            label: 'log out',
             tooltip: '',
           )
         ],

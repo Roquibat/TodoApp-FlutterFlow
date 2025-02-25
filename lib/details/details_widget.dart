@@ -15,6 +15,9 @@ class DetailsWidget extends StatefulWidget {
 
   final TasksRecord? taskDoc;
 
+  static String routeName = 'Details';
+  static String routePath = '/details';
+
   @override
   State<DetailsWidget> createState() => _DetailsWidgetState();
 }
@@ -34,6 +37,8 @@ class _DetailsWidgetState extends State<DetailsWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -61,6 +66,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
               child: Container(
                 width: double.infinity,
+                constraints: BoxConstraints(
+                  maxWidth: 400.0,
+                ),
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   borderRadius: BorderRadius.circular(24.0),
